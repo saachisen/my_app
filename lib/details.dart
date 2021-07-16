@@ -1,11 +1,16 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 
-List get_stuff_list(String weatherState, String place) {
+List get_stuff_list(String weatherState, double temp, String place) {
+// List get_stuff_list(String weatherState, String place) {
 // List get_stuff_list(String place) {
 
   List stuff_list = ['keys', 'wallet', 'phone', 'mask', 'hand sanitiser'];
 
   print (weatherState);
+
+  print(temp.toString());
 
   // expand list of stuff depending on today's weather 
   if (weatherState == 'Heavy Rain') {
@@ -16,6 +21,17 @@ List get_stuff_list(String weatherState, String place) {
     stuff_list.add('sunscreen');
   }
 
+  if (temp > 20.0) {
+    stuff_list.add('water bottle');
+  } else
+    if (temp < 10.0) {
+    stuff_list.add('gloves');
+    stuff_list.add('wooly hat');
+    stuff_list.add('scarf');
+  } else 
+  if (temp > 40.0 || temp < -10.0) {
+    stuff_list.add('oh my god please do not go out');
+  }
 
   // expand list of stuff depending on where you're going today
   if (place == 'Work') {
@@ -49,11 +65,11 @@ List get_stuff_list(String weatherState, String place) {
 class MyDetails extends StatelessWidget {
 
   final String itemState;
-  // final double itemTemp;
+  final double itemTemp;
   final String itemPlace;
 
-  // MyDetails(this.itemState, this.itemTemp, this.itemPlace);
-  MyDetails(this.itemState, this.itemPlace);
+  MyDetails(this.itemState, this.itemTemp, this.itemPlace);
+  // MyDetails(this.itemState, this.itemPlace);
   // MyDetails(this.itemPlace);
 
   @override
@@ -61,7 +77,8 @@ class MyDetails extends StatelessWidget {
     final title = 'what to take to... $itemPlace';
 
     // List stuff_list = get_stuff_list(itemPlace);
-    List stuff_list = get_stuff_list(itemState, itemPlace);
+    // List stuff_list = get_stuff_list(itemState, itemPlace);
+    List stuff_list = get_stuff_list(itemState, itemTemp, itemPlace);
 
     return Scaffold(
         appBar: AppBar(

@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           MaterialPageRoute(
                               builder: (context) => MyDetails(
                                   snapshot.data!.dataModel[0].state, // index 0 has today's weather
-                                  // snapshot.data!.dataModel[0].temp,
+                                  snapshot.data!.dataModel[0].temp,
                                   places[index])));
                     },
                   );

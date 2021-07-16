@@ -16,12 +16,12 @@ class DataSeries {
 class DataItem {
   final String state;
   final String date;
-  // final double temp;
+  final double temp;
 
-  // DataItem({required this.state, required this.date, required this.temp});
-  DataItem({required this.state, required this.date});
+  DataItem({required this.state, required this.date, required this.temp});
+  // DataItem({required this.state, required this.date});
 
   factory DataItem.fromJson(Map<String, dynamic> json) {
-    return DataItem(state: json['weather_state_name'], date: json['applicable_date']); // , temp: json['the_temp']);
+    return DataItem(state: json['weather_state_name'], date: json['applicable_date'], temp: json['the_temp']);
   }
 }
