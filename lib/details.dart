@@ -1,29 +1,43 @@
 import 'package:flutter/material.dart';
 
-List get_stuff_list(String item) {
-  
+List get_stuff_list(String weatherState, String place) {
+// List get_stuff_list(String place) {
+
   List stuff_list = ['keys', 'wallet', 'phone', 'mask', 'hand sanitiser'];
 
-  if (item == 'Work') {
+  print (weatherState);
+
+  // expand list of stuff depending on today's weather 
+  if (weatherState == 'Heavy Rain') {
+    stuff_list.add('umbrella');
+  } else
+    if (weatherState == 'Clear') {
+    stuff_list.add('sunglasses');
+    stuff_list.add('sunscreen');
+  }
+
+
+  // expand list of stuff depending on where you're going today
+  if (place == 'Work') {
     stuff_list.add('work id card');
     stuff_list.add('latpop');
   } else
-  if (item == 'Party') {
+  if (place == 'Party') {
     stuff_list.add('lipstick');
     stuff_list.add('earrings');
     stuff_list.add('gift');
     stuff_list.add('wine');
   } else
-  if (item == 'Park') {
+  if (place == 'Park') {
     stuff_list.add('picnic blanket');
     stuff_list.add('insect repellent');
   } else
-  if (item == 'Gym') {
+  if (place == 'Gym') {
     stuff_list.add('water bottle');
     stuff_list.add('towel');
     stuff_list.add('change of clothes');
   } else
-  if (item == 'Day Out') {
+  if (place == 'Day Out') {
     stuff_list.add('cardigan');
     stuff_list.add('snack');
   } 
@@ -34,14 +48,20 @@ List get_stuff_list(String item) {
 
 class MyDetails extends StatelessWidget {
 
-  final item;
-  MyDetails(this.item);
+  final String itemState;
+  // final double itemTemp;
+  final String itemPlace;
+
+  // MyDetails(this.itemState, this.itemTemp, this.itemPlace);
+  MyDetails(this.itemState, this.itemPlace);
+  // MyDetails(this.itemPlace);
 
   @override
   Widget build(BuildContext context) {
-    final title = 'what to take to... $item';
+    final title = 'what to take to... $itemPlace';
 
-    List stuff_list = get_stuff_list(item);
+    // List stuff_list = get_stuff_list(itemPlace);
+    List stuff_list = get_stuff_list(itemState, itemPlace);
 
     return Scaffold(
         appBar: AppBar(
