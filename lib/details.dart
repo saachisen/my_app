@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 
 List get_stuff_list(String weatherState, double temp, String place) {
-// List get_stuff_list(String weatherState, String place) {
-// List get_stuff_list(String place) {
 
   List stuff_list = ['keys', 'wallet', 'phone', 'mask', 'hand sanitiser'];
 
@@ -38,27 +36,27 @@ List get_stuff_list(String weatherState, double temp, String place) {
     stuff_list.add('work id card');
     stuff_list.add('latpop');
   } else
-  if (place == 'Party') {
+  if (place == 'A Party') {
     stuff_list.add('lipstick');
     stuff_list.add('earrings');
     stuff_list.add('gift');
     stuff_list.add('wine');
   } else
-  if (place == 'Park') {
+  if (place == 'The Park') {
     stuff_list.add('picnic blanket');
     stuff_list.add('insect repellent');
   } else
-  if (place == 'Gym') {
+  if (place == 'The Gym') {
     stuff_list.add('water bottle');
     stuff_list.add('towel');
     stuff_list.add('change of clothes');
   } else
-  if (place == 'Day Out') {
+  if (place == 'A Day Out') {
     stuff_list.add('cardigan');
     stuff_list.add('snack');
   } 
 
-  return stuff_list;
+  return stuff_list.toSet().toList();
 
 }
 
@@ -69,15 +67,11 @@ class MyDetails extends StatelessWidget {
   final String itemPlace;
 
   MyDetails(this.itemState, this.itemTemp, this.itemPlace);
-  // MyDetails(this.itemState, this.itemPlace);
-  // MyDetails(this.itemPlace);
 
   @override
   Widget build(BuildContext context) {
     final title = "Here's what to take to... $itemPlace";
 
-    // List stuff_list = get_stuff_list(itemPlace);
-    // List stuff_list = get_stuff_list(itemState, itemPlace);
     List stuff_list = get_stuff_list(itemState, itemTemp, itemPlace);
 
     return Scaffold(
@@ -89,7 +83,6 @@ class MyDetails extends StatelessWidget {
                     fontSize: 15),
               ),
         ),
-        // body: Text('You selected $isDartCool'),
         body: ListView.builder(
           itemCount: stuff_list.length,
           itemBuilder: (context, index) {
