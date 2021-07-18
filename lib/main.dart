@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'AllTheStuff',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: MyHomePage(
         title: 'AllTheStuff',
@@ -39,7 +39,8 @@ class MyHomePage extends StatefulWidget {
 
 Future<String> _loadRemoteData() async {
   final response = await (http
-      .get(Uri.parse('https://www.metaweather.com/api/location/12586539/')));
+      .get(Uri.parse('https://www.metaweather.com/api/location/44418/'))); // weather currently hardcoded to London, UK
+                                                                           // for more interesting results, try replacing '44418' with '12586539' (Mumbai!)
   if (response.statusCode == 200) {
     print('response statusCode is 200');
     return response.body;
@@ -67,10 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<String> places = [
     'Work',
-    'Party',
-    'Park',
-    'Gym',
-    'Day Out'
+    'A Party',
+    'The Park',
+    'The Gym',
+    'A Day Out'
   ];
 
   @override
@@ -83,8 +84,25 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
-      ),
+          centerTitle: true,
+          title: Column(
+            children: <Widget>[
+                Text(
+                'AllTheStuff',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25),
+              ),
+              Text("So where are you going today?",
+              style: TextStyle(
+                    color: Colors.white,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 15),
+              ),
+            ]
+           )
+        ),
       body: FutureBuilder<DataSeries>(
           future: dataSeries,
           builder: (context, snapshot) {

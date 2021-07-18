@@ -74,7 +74,7 @@ class MyDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final title = 'what to take to... $itemPlace';
+    final title = "Here's what to take to... $itemPlace";
 
     // List stuff_list = get_stuff_list(itemPlace);
     // List stuff_list = get_stuff_list(itemState, itemPlace);
@@ -82,7 +82,12 @@ class MyDetails extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(title),
+          title: Text(title,
+                    style: TextStyle(
+                    color: Colors.white,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 15),
+              ),
         ),
         // body: Text('You selected $isDartCool'),
         body: ListView.builder(
